@@ -541,7 +541,50 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .nr{text-align:center;padding:48px 20px;color:var(--muted);}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:7px 18px;border-radius:18px;font-size:0.78rem;font-weight:600;opacity:0;transition:opacity 0.3s;z-index:200;pointer-events:none;}
 .toast.show{opacity:1;}
-@media(max-width:600px){.cards-grid{grid-template-columns:1fr}.og2,.og3{grid-template-columns:1fr 1fr}.tabs{gap:4px}.tab-btn{padding:7px 12px;font-size:0.8rem}}
+@media(max-width:768px){
+  .wrapper{padding:12px;}
+  .header{padding:18px 12px 12px;}
+  .header h1{font-size:1.6rem;letter-spacing:1px;}
+  .tabs{gap:5px;margin-bottom:12px;}
+  .tab-btn{padding:8px 14px;font-size:0.82rem;border-radius:40px;}
+  .cards-grid{grid-template-columns:1fr;gap:12px;}
+  .sc{padding:14px;border-radius:14px;}
+  .sn{font-size:0.98rem;}
+  .sp{font-size:1.2rem;}
+  .og1,.og2,.og3{grid-template-columns:1fr 1fr;gap:8px;}
+  .ov{font-size:1rem;padding:5px 6px;}
+  .ol{font-size:0.65rem;}
+  .oh{font-size:0.62rem;}
+  .os{padding:10px;}
+  .ot{font-size:0.7rem;}
+  .stats-bar{gap:7px;}
+  .stat-card{min-width:70px;padding:9px 10px;}
+  .stat-card .num{font-size:1.45rem;}
+  .stat-card .lbl{font-size:0.62rem;}
+  .scan-btn{padding:12px 22px;font-size:1rem;width:100%;justify-content:center;margin-top:10px;}
+  .cp{padding:11px;}
+  .ci-row{gap:5px;}
+  .ci-inp{font-size:0.82rem;padding:8px 9px;}
+  .add-btn{width:100%;padding:9px;font-size:0.85rem;margin-top:4px;}
+  .btn-row{gap:5px;}
+  .del-btn,.excl-btn{padding:7px;font-size:0.72rem;}
+  .exp-grid{grid-template-columns:1fr;}
+  .exp-mini-card{padding:9px 12px;}
+  .lgd{padding:10px;font-size:0.7rem;}
+  .lgd-g{grid-template-columns:1fr;}
+  .rr-row{font-size:0.68rem;}
+  .trail-note{font-size:0.65rem;}
+  .tr{gap:4px;}
+  .tc{padding:3px 7px;font-size:0.68rem;}
+  .vb{font-size:0.76rem;padding:4px 12px;}
+  .cb{padding:7px;font-size:0.72rem;}
+  .cg{grid-template-columns:1fr;}
+}
+@media(max-width:380px){
+  .tab-btn{padding:6px 10px;font-size:0.75rem;}
+  .header h1{font-size:1.35rem;}
+  .og2{grid-template-columns:1fr;}
+}
 </style>"""
 
 JS = """<script>
