@@ -257,6 +257,12 @@ def analyze_stock(code, name, market="tadawul", benchmark_df=None):
         # BUY مشروط — score جيد + فوق EMA يومي وأسبوعي
         elif score>=13 and rr>=1.0 and ad and aw:
             verdict,priority,buy_type="BUY",1,"🟡 BUY مشروط"
+            # سبب التحفظ
+            cond_reasons = []
+            if rr < 1.3: cond_reasons.append("R:R أقل من 1.3 ("+str(rr)+")")
+            if not am: cond_reasons.append("الشهري ضعيف")
+            if score < 15: cond_reasons.append("Score "+str(score)+"/20 لم يصل 15")
+            buy_condition_note = " | ".join(cond_reasons) if cond_reasons else ""
         elif score>=10:
             verdict,priority,buy_type="WAIT",2,"⏳ WAIT"
         else:
@@ -287,6 +293,7 @@ def analyze_stock(code, name, market="tadawul", benchmark_df=None):
             "above_daily":ad,"above_weekly":aw,"above_monthly":am,
             "trend":trend,"stars":stars,"score":score,"score_pct":round(score/20*100),
             "verdict":verdict,"priority":priority,"buy_type":buy_type,
+            "buy_condition_note":buy_condition_note if "buy_condition_note" in dir() else "",
             "entry":entry,"limit_buy":limit_buy,
             "tp1_stop":tp1_stop,"tp1_limit":tp1_limit,
             "tp2_stop":tp2_stop,"tp2_limit":tp2_limit,
@@ -505,6 +512,7 @@ def render_card(s,idx):
         '<span class="vb '+buy_badge_cls+'">'+buy_type+'</span>'
         '<span class="stars" title="'+tip+'">'+stars_html+' <span class="tn">'+s['trend']+'</span></span>'
         '</div>'
+        +( '<div class="cond-note">⚠️ التحفظ: '+s.get('buy_condition_note','')+'</div>' if s.get('buy_condition_note') else '' )+
 
         +rs_html+
 
@@ -669,6 +677,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .pro-title{font-size:0.67rem;color:var(--muted);font-weight:600;margin-bottom:8px;letter-spacing:0.4px;}
 .ob-item{display:flex;justify-content:space-between;align-items:center;padding:4px 6px;border-radius:6px;background:rgba(41,121,255,0.06);margin-bottom:4px;font-size:0.7rem;}
 .ob-zone{color:var(--blue)}.ob-mid{color:var(--muted)}
+.ob-dist{font-size:0.6rem;color:var(--muted);margin-top:2px;}
+.pro-explain{font-size:0.67rem;color:var(--muted);background:rgba(121,134,203,0.06);padding:5px 8px;border-radius:6px;margin-bottom:8px;border-right:2px solid var(--blue);}
+.cond-note{font-size:0.67rem;color:var(--yellow);background:rgba(255,179,0,0.06);padding:4px 8px;border-radius:7px;margin-bottom:8px;border-right:2px solid var(--yellow);}
 .pe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;}
 .pe-item{text-align:center;background:rgba(0,0,0,0.2);border-radius:7px;padding:5px;}
 .pe-label{font-size:0.6rem;color:var(--muted);}.pe-val{font-size:0.95rem;font-weight:700;margin-top:2px;}
