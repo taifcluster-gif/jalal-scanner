@@ -1,1 +1,1 @@
-web: python jalal_dashboard.py
+web: python jalal_radar_v4.py
