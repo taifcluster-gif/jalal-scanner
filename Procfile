@@ -1,1 +1,1 @@
-web: python Jalal_5.py
+web: python jalal_5.py
